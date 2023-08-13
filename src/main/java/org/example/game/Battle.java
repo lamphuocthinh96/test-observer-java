@@ -13,7 +13,7 @@ public class Battle {
     public void start() {
         heroes.add(new Hero(1, 5, 1, 5, 100, false));
         enemies.add(new Enemy(1, 2, 10, 2,10));
-        enemies.add(new Enemy(2, 1, 5, 5, 30));
+        enemies.add(new Enemy(2, 1, 15, 5, 30));
         enemies.add(new Enemy(3, 0.3f, 20, 5, 30));
         List<EnemyAction> enemyActions = new ArrayList<>();
         BattleChannel battleChannel = new BattleChannel();

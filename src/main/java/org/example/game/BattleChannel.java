@@ -35,7 +35,7 @@ public class BattleChannel implements PropertyChangeListener {
                     hero.setBusy(true);
                     enemy.setHp(enemy.getHp() - hero.dmg);
                     System.out.printf("E-%d be hit -%d to %d by hero %d\n",
-                            enemy.getId(), enemy.getHp(), hero.dmg, hero.getId());
+                            enemy.getId(), hero.dmg, enemy.getHp(), hero.getId());
                     break;
                 }
             }
@@ -54,10 +54,14 @@ public class BattleChannel implements PropertyChangeListener {
                         heroes.remove(hero);
                     }
                 }
-                if (heroes.isEmpty()) {
-                    System.out.println("Mission failed");
-                    System.exit(0);
-                }
+            }
+            if (enemies.isEmpty()) {
+                System.out.println("Congratulation! Mission passed");
+                System.exit(0);
+            }
+            if (heroes.isEmpty()) {
+                System.out.println("Mission failed!");
+                System.exit(0);
             }
         } catch (Exception e) {
             e.printStackTrace();
