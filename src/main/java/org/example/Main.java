@@ -1,7 +1,6 @@
 package org.example;
 
 import org.example.game.Battle;
-import org.example.observable.*;
 
 public class Main {
     public static void main(String[] args) {

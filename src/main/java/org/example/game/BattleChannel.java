@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Iterator;
 import java.util.List;
 
 @AllArgsConstructor
@@ -46,12 +47,14 @@ public class BattleChannel implements PropertyChangeListener {
 //            enemy.setHp(enemy.getHp() - );
             if (evt.getPropertyName().equals("attack")) {
 //            Enemy enemy = (Enemy) evt.getOldValue();
-                for (Hero hero : heroes) {
+                Iterator<Hero> iter = heroes.iterator();
+                while(iter.hasNext()){
+                    Hero hero = iter.next();
                     hero.setHp(hero.getHp() - enemy.getDmg());
                     System.out.printf("Hero %d HP = %d\n", hero.getId(), hero.getHp());
                     if (hero.getHp() <= 0) {
                         System.out.printf("Hero %d dead\n", hero.getId());
-                        heroes.remove(hero);
+                        iter.remove();
                     }
                 }
             }

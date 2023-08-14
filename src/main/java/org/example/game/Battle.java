@@ -10,11 +10,13 @@ public class Battle {
     List<Enemy> enemies = new ArrayList<>();
     List<Hero> heroes = new ArrayList<>();
 
+    public static long startTime;
+
     public void start() {
-        heroes.add(new Hero(1, 5, 1, 5, 100, false));
+        heroes.add(new Hero(1, 10, 2, 5, 150, false));
         enemies.add(new Enemy(1, 2, 10, 2,10));
-        enemies.add(new Enemy(2, 1, 15, 5, 30));
-        enemies.add(new Enemy(3, 0.3f, 20, 5, 30));
+        enemies.add(new Enemy(2, 3, 15, 5, 30));
+        enemies.add(new Enemy(3, 0.6f, 20, 5, 30));
         List<EnemyAction> enemyActions = new ArrayList<>();
         BattleChannel battleChannel = new BattleChannel();
         battleChannel.setEnemies(enemies);
@@ -33,6 +35,7 @@ public class Battle {
             heroActions.add(heroAction);
         });
         battleChannel.initMap();
+        startTime = System.currentTimeMillis();
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         enemyActions.forEach(executorService::submit);
         heroActions.forEach(executorService::submit);

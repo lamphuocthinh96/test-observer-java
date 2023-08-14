@@ -41,9 +41,14 @@ public class EnemyAction implements Runnable {
             if (randDelay <= 0) {
                 pos += enemy.speed;
                 support.firePropertyChange("move", this.enemy, pos);
-                if (pos >= 10) {
-                    System.out.println("Attacking....");
+                if (pos >= 10 && this.enemy.hp > 0) {
+                    System.out.printf("E-%d attacking....\n", enemy.id);
                     support.firePropertyChange("attack", this.enemy, pos);
+                    try {
+                        Thread.sleep(enemy.atkSpeed + 1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         }
